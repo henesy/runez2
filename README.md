@@ -30,4 +30,4 @@ See [the spec](./spec.md) for implementation details, or read the source ☺.
 
 ## References
 
-	- [runez](https://github.com/henesy/runez)
+- [runez](https://github.com/henesy/runez)
