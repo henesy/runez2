@@ -35,9 +35,38 @@ func main() {
 	}
 
 	// TODO - allow calling like `runez2 -c foo.txt` ;; use flag.Args
+	inf := os.Stdin
+	outf := os.Stdout
 
-	in := bufio.NewReader(os.Stdin)
-	out := bufio.NewWriter(os.Stdout)
+	args := flag.Args()
+	switch len(args) {
+	case 0:
+	case 1:
+		f, err := os.OpenFile(args[0], os.O_RDONLY, 0755)
+		if err != nil {
+			fatal("err: could not read input file - ", err)
+		}
+
+		inf = f
+	case 2:
+		fin, err := os.OpenFile(args[0], os.O_RDONLY, 0755)
+		if err != nil {
+			fatal("err: could not read input file - ", err)
+		}
+
+		fout, err := os.OpenFile(args[1], os.O_RDWR|os.O_CREATE, 0755)
+		if err != nil {
+			fatal("err: could not read input file - ", err)
+		}
+
+		inf = fin
+		outf = fout
+	default:
+		fatal("err: invalid argument count; use stdin/stdout or specify in/out files")
+	}
+
+	in := bufio.NewReader(inf)
+	out := bufio.NewWriter(outf)
 
 	// Choose mode operation
 	switch {

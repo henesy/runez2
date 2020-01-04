@@ -12,7 +12,7 @@ See [the spec](./spec.md) for implementation details, or read the source ☺.
 
 ## Usage
 
-	runez2 [-D] [-c | -d] < input > output
+	runez2 [-D] [-c ¦ -d] [input ¦ < input] [output ¦ > output]
 
 ## Examples
 
